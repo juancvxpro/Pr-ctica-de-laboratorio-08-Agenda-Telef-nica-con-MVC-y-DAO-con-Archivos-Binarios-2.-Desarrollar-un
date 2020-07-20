@@ -21,7 +21,7 @@ import java.util.List;
  * a que el cosntructor recibe al usuarioDao. Ademas podra hacer uso de los
  * telefonos disponibles en Telefono Dao
  *
- * @author Paul Idrovo
+ * @author 
  */
 public class ControladorUsuario {
 
