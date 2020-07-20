@@ -5,16 +5,19 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorTelefono;
+import ec.edu.ups.modelo.Telefono;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Juanc
  */
 public class ListarTelefonosUsuarios extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form ListarTelefonosUsuarios
-     */
-    public ListarTelefonosUsuarios() {
+private ControladorTelefono controladorTelefono;
+    public ListarTelefonosUsuarios(ControladorTelefono controladorTelefono) {
+        this.controladorTelefono=controladorTelefono;
         initComponents();
     }
 
@@ -32,6 +35,8 @@ public class ListarTelefonosUsuarios extends javax.swing.JInternalFrame {
         txtCedula = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
+
+        setClosable(true);
 
         tblTelefonosU.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -59,6 +64,11 @@ public class ListarTelefonosUsuarios extends javax.swing.JInternalFrame {
         jLabel1.setText("Ingrese Cedula");
 
         btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,7 +109,24 @@ public class ListarTelefonosUsuarios extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_tblTelefonosUMouseClicked
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if(txtCedula==null){
+            JOptionPane.showMessageDialog(this, "Campo vacio");
+        }else{
+        cargarTelefonosTbl();
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
+ public void cargarTelefonosTbl() {
+         DefaultTableModel modelo = (DefaultTableModel) tblTelefonosU.getModel();
+    modelo.setRowCount(0);
+    for(Telefono telefono: controladorTelefono.listarTelefonos(txtCedula.getText())){
+     Object[] rowData ={telefono.getCodigo(),telefono.getTipo(),telefono.getNumero(),telefono.getOperadora()};
+     modelo.addRow(rowData);
+     tblTelefonosU.setModel(modelo);
+    }
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JLabel jLabel1;

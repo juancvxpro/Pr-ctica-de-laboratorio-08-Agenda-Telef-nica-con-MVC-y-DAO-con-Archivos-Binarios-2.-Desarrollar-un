@@ -20,7 +20,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private VentanaIniciarSesion ventanaIniciarSesion;
     private RegistrarUsuario registrarUsuario;
-    private GestionUsuario gestionUsuario;
     private GestionTelefono gestionTelefono;
     private ListarTelefonosUsuarios listarTlfUsuarios;
     private Listartelefonos listarTelefonos;
@@ -47,10 +46,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         ventanaIniciarSesion = new VentanaIniciarSesion(controladorUsuario, this);
         registrarUsuario = new RegistrarUsuario(controladorUsuario);
-        gestionUsuario = new GestionUsuario();
+     
         gestionTelefono = new GestionTelefono(controladorUsuario, controladorTelefono);
-        listarTlfUsuarios = new ListarTelefonosUsuarios ();
-        listarTelefonos = new Listartelefonos ();
+        listarTlfUsuarios = new ListarTelefonosUsuarios (controladorTelefono);
+        listarTelefonos = new Listartelefonos ( controladorTelefono);
 
     }
 
@@ -78,9 +77,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return gestionMenu;
     }
 
-    public JMenuItem getGestinUsuarioMenu() {
-        return gestinUsuarioMenu;
-    }
+   
 
     public JMenuItem getGestionTelefonoMenu() {
         return gestionTelefonoMenu;
@@ -101,11 +98,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         IniciarSesionMenuItem = new javax.swing.JMenuItem();
         RegistrarUsuarioMenuItem = new javax.swing.JMenuItem();
         ListaTUsuarios = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        ListarTelefonosMenu = new javax.swing.JMenuItem();
         CerrarSesionMenu = new javax.swing.JMenuItem();
         SalirMenuItem = new javax.swing.JMenuItem();
         gestionMenu = new javax.swing.JMenu();
-        gestinUsuarioMenu = new javax.swing.JMenuItem();
         gestionTelefonoMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -146,14 +142,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         InicioMenu.add(ListaTUsuarios);
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Listar Todos los telefonos");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        ListarTelefonosMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        ListarTelefonosMenu.setText("Listar Todos los telefonos");
+        ListarTelefonosMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                ListarTelefonosMenuActionPerformed(evt);
             }
         });
-        InicioMenu.add(jMenuItem1);
+        InicioMenu.add(ListarTelefonosMenu);
 
         CerrarSesionMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK));
         CerrarSesionMenu.setText("Cerrar Sesion");
@@ -177,15 +173,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuBar.add(InicioMenu);
 
         gestionMenu.setText("Gestion");
-
-        gestinUsuarioMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
-        gestinUsuarioMenu.setText("GestionUsuario");
-        gestinUsuarioMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gestinUsuarioMenuActionPerformed(evt);
-            }
-        });
-        gestionMenu.add(gestinUsuarioMenu);
 
         gestionTelefonoMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
         gestionTelefonoMenu.setText("GestionTelefono");
@@ -222,10 +209,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_IniciarSesionMenuItemActionPerformed
 
-    private void gestinUsuarioMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestinUsuarioMenuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_gestinUsuarioMenuActionPerformed
-
     private void CerrarSesionMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarSesionMenuActionPerformed
         IniciarSesionMenuItem.setVisible(true);
         RegistrarUsuarioMenuItem.setVisible(true);
@@ -241,12 +224,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void ListaTUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaTUsuariosActionPerformed
         desktopPane.add(listarTlfUsuarios);
         listarTlfUsuarios.setVisible(true);
+        CerrarSesionMenu.setVisible(false);
     }//GEN-LAST:event_ListaTUsuariosActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void ListarTelefonosMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarTelefonosMenuActionPerformed
         desktopPane.add(listarTelefonos);
         listarTelefonos.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        CerrarSesionMenu.setVisible(false);
+    }//GEN-LAST:event_ListarTelefonosMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,13 +273,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem IniciarSesionMenuItem;
     private javax.swing.JMenu InicioMenu;
     private javax.swing.JMenuItem ListaTUsuarios;
+    private javax.swing.JMenuItem ListarTelefonosMenu;
     private javax.swing.JMenuItem RegistrarUsuarioMenuItem;
     private javax.swing.JMenuItem SalirMenuItem;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenuItem gestinUsuarioMenu;
     private javax.swing.JMenu gestionMenu;
     private javax.swing.JMenuItem gestionTelefonoMenu;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 

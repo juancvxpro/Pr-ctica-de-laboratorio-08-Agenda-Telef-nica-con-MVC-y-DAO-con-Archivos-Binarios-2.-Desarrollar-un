@@ -5,16 +5,20 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorTelefono;
+import ec.edu.ups.modelo.Telefono;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Juanc
  */
 public class Listartelefonos extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Listartelefonos
-     */
-    public Listartelefonos() {
+   private ControladorTelefono controladorTelefono;
+    public Listartelefonos(ControladorTelefono controladorTelefono) {
+        this.controladorTelefono= controladorTelefono;
+   
         initComponents();
     }
 
@@ -28,16 +32,16 @@ public class Listartelefonos extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblTelefonosU = new javax.swing.JTable();
+        tblTelefonosUse = new javax.swing.JTable();
         btnListar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
 
-        tblTelefonosU.setModel(new javax.swing.table.DefaultTableModel(
+        tblTelefonosUse.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Codigo", "Tipo", "Numero", "Operadora", "Cedula", "Nombre", "Apellido"
+                "Codigo", "Numero", "Tipo", "Operadora", "Cedula", "Nombre", "Apellido"
             }
         ) {
             Class[] types = new Class [] {
@@ -48,14 +52,20 @@ public class Listartelefonos extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        tblTelefonosU.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblTelefonosUse.getTableHeader().setReorderingAllowed(false);
+        tblTelefonosUse.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblTelefonosUMouseClicked(evt);
+                tblTelefonosUseMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblTelefonosU);
+        jScrollPane1.setViewportView(tblTelefonosUse);
 
         btnListar.setText("LISTAR");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setText("LIMPIAR");
 
@@ -93,15 +103,24 @@ public class Listartelefonos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblTelefonosUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTelefonosUMouseClicked
-      
-    }//GEN-LAST:event_tblTelefonosUMouseClicked
-
-
+    private void tblTelefonosUseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTelefonosUseMouseClicked
+       
+    }//GEN-LAST:event_tblTelefonosUseMouseClicked
+    
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+       DefaultTableModel modelo = (DefaultTableModel) tblTelefonosUse.getModel();
+    modelo.setRowCount(0);
+    for(Telefono telefono: controladorTelefono.findAll()){
+     Object[] rowData ={telefono.getCodigo(),telefono.getTipo(),telefono.getNumero(),telefono.getOperadora()};
+     modelo.addRow(rowData);
+     tblTelefonosUse.setModel(modelo);
+    }//GEN-LAST:event_btnListarActionPerformed
+ 
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnListar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblTelefonosU;
+    private javax.swing.JTable tblTelefonosUse;
     // End of variables declaration//GEN-END:variables
 }

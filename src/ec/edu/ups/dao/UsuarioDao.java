@@ -34,11 +34,11 @@ public class UsuarioDao implements IUsuarioDao {
      * listaTelefonos;
      *
      */
-    private int tamanioRegistro = 128;
+    private int tamanioRegistro ;
     private RandomAccessFile archivo;
 
     public UsuarioDao() {
-
+           tamanioRegistro=128;
         try {
             archivo = new RandomAccessFile("datos/usuarios.dat", "rw");
         } catch (IOException ex) {
@@ -64,9 +64,28 @@ public class UsuarioDao implements IUsuarioDao {
 
     @Override
     public Usuario read(String cedula) {
-        //bucle for each para buscar el usuario
+        try {
+            int salto = 0;
 
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                     String cedulaA=archivo.readUTF().trim();
+                if (cedulaA.equals(cedula)) {
+                    // retornar el Usuario
+                     Usuario usuario = new Usuario(archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(),
+                            archivo.readUTF().trim(), archivo.readUTF().trim());
+                     
+                    return usuario;
+
+                }
+                salto += tamanioRegistro;
+            }
+
+        } catch (IOException ex) {
+            System.out.println("Error de lectura y escritura read:TelefonoDao");
+        }
         return null;
+
     }
 
     @Override

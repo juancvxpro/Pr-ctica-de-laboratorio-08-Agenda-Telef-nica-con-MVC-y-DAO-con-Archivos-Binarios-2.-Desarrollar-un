@@ -13,9 +13,9 @@ public interface ITelefonoDao {
 
     public Telefono read(int id);
 
-    public void update(Telefono telefono);
+    public void update(Telefono t);
 
-    public void delete(Telefono telefono);
+    public void delete(int codigo);
 
     public List<Telefono> listarTelefonos();
 

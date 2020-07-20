@@ -127,7 +127,7 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
             ventanaPrincipal.getIniciarSesionMenuItem().setVisible(false);
             ventanaPrincipal.getCerrarSesionMenu().setVisible(true);
             ventanaPrincipal.getGestionTelefonoMenu().setVisible(true);
-            ventanaPrincipal.getGestinUsuarioMenu().setVisible(true);
+            
             ventanaPrincipal.getSalirMenuItem().setVisible(false);
             ventanaPrincipal.getRegistrarUsuarioMenuItem().setVisible(false);
             ventanaPrincipal.getGestionMenu().setVisible(true);

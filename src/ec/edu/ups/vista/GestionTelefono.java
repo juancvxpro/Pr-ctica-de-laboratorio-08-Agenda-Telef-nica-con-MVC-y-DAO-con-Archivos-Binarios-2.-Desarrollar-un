@@ -58,6 +58,10 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
             modelo.addElement(operadora);
         }
     }
+    public void limpiarTabla(){
+         DefaultTableModel modelo = (DefaultTableModel) tblTelefonos.getModel();
+    modelo.setRowCount(0);
+    }
 
     public void cargarTelefonosTbl() {
          DefaultTableModel modelo = (DefaultTableModel) tblTelefonos.getModel();
@@ -317,17 +321,17 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
             if (item.equals("Casa")) {
                 txtFormatoNumero.setFormatterFactory(
                         new javax.swing.text.DefaultFormatterFactory(
-                                new javax.swing.text.MaskFormatter("(+593)##-####-###")
+                                new javax.swing.text.MaskFormatter("(+593)#-####-###")
                         ));
             } else if (item.equals("Movil")) {
                 txtFormatoNumero.setFormatterFactory(
                         new javax.swing.text.DefaultFormatterFactory(
-                                new javax.swing.text.MaskFormatter("(+593)##-####-####")
+                                new javax.swing.text.MaskFormatter("(+593)#-####-####")
                         ));
             } else {
                 txtFormatoNumero.setFormatterFactory(
                         new javax.swing.text.DefaultFormatterFactory(
-                                new javax.swing.text.MaskFormatter("(+593)##-####-###")
+                                new javax.swing.text.MaskFormatter("(+593)#-####-###")
                         ));
             }
         } catch (java.text.ParseException ex) {
@@ -345,8 +349,10 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbxOperadoraActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        controladorUsuario.agregarTelefono(Integer.parseInt(txtCodigo.getText()), cbxTipo.getSelectedItem().toString(), txtFormatoNumero.getText(), cbxOperadora.getSelectedItem().toString());
-        cargarTelefonosTbl();
+        controladorUsuario.agregarTelefono(Integer.parseInt(txtCodigo.getText()), cbxTipo.getSelectedItem().toString().trim(), txtFormatoNumero.getText().trim(), cbxOperadora.getSelectedItem().toString().trim());
+          JOptionPane.showMessageDialog(this, "Telefono agregado exitosamente");
+          Limpiar();
+           cargarTelefonosTbl();
         cargarSiguienteCodigo();
 
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -357,8 +363,11 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        controladorUsuario.actualizarTelefono(Integer.parseInt(txtCodigo.getText()), cbxTipo.getSelectedItem().toString(), txtFormatoNumero.getText(), cbxOperadora.getSelectedItem().toString());
-        cargarTelefonosTbl();
+        
+        controladorUsuario.actualizarTelefono(Integer.parseInt(txtCodigo.getText()), cbxTipo.getSelectedItem().toString().trim(), txtFormatoNumero.getText().trim(), cbxOperadora.getSelectedItem().toString().trim());
+        JOptionPane.showMessageDialog(this, "Telefono actualizado exitosamente");
+         cargarTelefonosTbl();
+        //this.dispose();
         Limpiar();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -375,14 +384,22 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
         txtCodigo.setText(String.valueOf(codigo));
         
         cbxTipo.setSelectedItem(tipo.trim());
-        txtFormatoNumero.setValue(numero);
+        txtFormatoNumero.setValue(numero.trim());
         cbxOperadora.setSelectedItem(operadora.trim());
         
         
     }//GEN-LAST:event_tblTelefonosMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+     
+     int d=JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar el telefono con codigo "+txtCodigo.getText());
+     if(d==JOptionPane.YES_OPTION){
+     controladorTelefono.eliminarTelefono(Integer.parseInt(txtCodigo.getText()));
+     JOptionPane.showMessageDialog(this, "Telefono eliminado exitosamente");
+     }else if(d==JOptionPane.NO_OPTION){
+     cargarSiguienteCodigo();
+     }
+    // this.dispose();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed

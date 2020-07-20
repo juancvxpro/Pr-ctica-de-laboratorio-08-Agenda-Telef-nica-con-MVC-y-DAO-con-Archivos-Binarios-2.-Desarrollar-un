@@ -53,6 +53,7 @@ public class TelefonoDao implements ITelefonoDao {
             archivo.writeUTF(telefono.getTipo());
             archivo.writeUTF(telefono.getOperadora());
             archivo.writeUTF(telefono.getUsuario().getCedula());
+         
         } catch (IOException ex) {
             System.out.println("Error de lectura y escritura create: Telefono");
         }
@@ -74,6 +75,7 @@ public class TelefonoDao implements ITelefonoDao {
                     tel.setUsuario(usuario);
 
                     return tel;
+                  
                 }
                 salto += tamanioRegistro;
             }
@@ -87,6 +89,7 @@ public class TelefonoDao implements ITelefonoDao {
     //para actualizar un telefono
     @Override
     public void update(Telefono telefono) {
+     
         try {
             int salto = 0;
 
@@ -94,14 +97,13 @@ public class TelefonoDao implements ITelefonoDao {
                 archivo.seek(salto);
                 int idArchivo = archivo.readInt();
                 if (idArchivo == telefono.getCodigo()) {
-                    // sobreescribir datos
-                     archivo.seek(salto+1);
-                    archivo.writeBytes(telefono.getNumero());
-                    archivo.writeBytes(telefono.getTipo());
-                    archivo.writeBytes(telefono.getOperadora());
-                    archivo.writeBytes(telefono.getUsuario().getCedula());
-                    archivo.seek(salto-1);
-
+                   archivo.write(idArchivo);
+                   archivo.writeBytes(telefono.getNumero());
+                   archivo.writeBytes(telefono.getTipo());
+                   archivo.writeBytes(telefono.getOperadora());
+                   archivo.writeBytes(telefono.getUsuario().getCedula());
+                   archivo.close();
+                  
                 }
                 salto += tamanioRegistro;
             }
@@ -113,26 +115,27 @@ public class TelefonoDao implements ITelefonoDao {
 
     //para eliminar un telefono
     @Override
-    public void delete(Telefono telefono) {
+    public void delete(int codigo) {
+        System.out.println(""+codigo);
         try {
             int salto = 0;
 
             while (salto < archivo.length()) {
                 archivo.seek(salto);
                 int idArchivo = archivo.readInt();
-                if (idArchivo == telefono.getCodigo()) {
-                    // sobreescribir datos
-                    archivo.writeBytes("");
-                    archivo.writeBytes("");
-                    archivo.writeBytes("");
-                    archivo.writeBytes("");
-                    archivo.writeBytes("");
+                if (idArchivo == codigo) {
+                archivo.writeInt(0);
+                archivo.writeUTF("");
+                archivo.writeUTF("");
+               archivo.writeUTF("");
+               archivo.writeUTF("");
+               archivo.close();
                 }
                 salto += tamanioRegistro;
             }
 
         } catch (IOException ex) {
-            System.out.println("Error de lectura y escritura Update:TelefonoDao");
+            System.out.println("Error de lectura y escritura Delete:TelefonoDao");
         }
     }
 
@@ -162,10 +165,14 @@ public class TelefonoDao implements ITelefonoDao {
                 Telefono tel = new Telefono(archivo.readInt(), archivo.readUTF().trim(), archivo.readUTF().trim(),
                         archivo.readUTF().trim());
                 Usuario usuario = usuarioDao.read(archivo.readUTF().trim());
+                
                 tel.setUsuario(usuario);
+                
                 listar.add(tel);
-                salto += tamanioRegistro;
+                
+                 salto += tamanioRegistro;
             }
+             
 
         } catch (IOException ex) {
             System.out.println("Error de lectura y escritura listarTelefonos:TelefonoDao");
@@ -183,7 +190,7 @@ public class TelefonoDao implements ITelefonoDao {
             while (salto < archivo.length()) {
                 archivo.seek(salto);
                 String cedulaArchivo = archivo.readUTF();
-                if (cedula.equals(cedulaArchivo.trim())) {
+                if (cedula.trim().equals(cedulaArchivo.trim())) {
 
                     archivo.seek(salto - 85);
                     Telefono tel = new Telefono(archivo.readInt(), archivo.readUTF().trim(), archivo.readUTF().trim(),
