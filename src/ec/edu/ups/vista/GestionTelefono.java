@@ -366,13 +366,17 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
         int index = tblTelefonos.getSelectedRow();
 
         int codigo = (int) tblTelefonos.getValueAt(index, 0);
-        String tipo = tblTelefonos.getValueAt(index, 1).toString();
-        String numero = tblTelefonos.getValueAt(index, 2).toString();
-        String operadora = tblTelefonos.getValueAt(index, 3).toString();
+        String numero =""+ tblTelefonos.getValueAt(index, 1);
+        String tipo = ""+tblTelefonos.getValueAt(index, 2);
+        String operadora =""+ tblTelefonos.getValueAt(index, 3);
+        
+        
+        
         txtCodigo.setText(String.valueOf(codigo));
-        cbxTipo.setSelectedItem(tipo);
+        
+        cbxTipo.setSelectedItem(tipo.trim());
         txtFormatoNumero.setValue(numero);
-        cbxOperadora.setSelectedItem(operadora);
+        cbxOperadora.setSelectedItem(operadora.trim());
         
         
     }//GEN-LAST:event_tblTelefonosMouseClicked

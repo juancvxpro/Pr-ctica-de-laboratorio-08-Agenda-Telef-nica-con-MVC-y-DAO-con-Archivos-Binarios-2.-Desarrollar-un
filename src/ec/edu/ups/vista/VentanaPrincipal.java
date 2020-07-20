@@ -22,6 +22,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private RegistrarUsuario registrarUsuario;
     private GestionUsuario gestionUsuario;
     private GestionTelefono gestionTelefono;
+    private ListarTelefonosUsuarios listarTlfUsuarios;
+    private Listartelefonos listarTelefonos;
 
     private TelefonoDao telefonoDAO;
     private UsuarioDao usuarioDAO;
@@ -47,6 +49,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         registrarUsuario = new RegistrarUsuario(controladorUsuario);
         gestionUsuario = new GestionUsuario();
         gestionTelefono = new GestionTelefono(controladorUsuario, controladorTelefono);
+        listarTlfUsuarios = new ListarTelefonosUsuarios ();
+        listarTelefonos = new Listartelefonos ();
 
     }
 
@@ -96,6 +100,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         InicioMenu = new javax.swing.JMenu();
         IniciarSesionMenuItem = new javax.swing.JMenuItem();
         RegistrarUsuarioMenuItem = new javax.swing.JMenuItem();
+        ListaTUsuarios = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         CerrarSesionMenu = new javax.swing.JMenuItem();
         SalirMenuItem = new javax.swing.JMenuItem();
         gestionMenu = new javax.swing.JMenu();
@@ -130,6 +136,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         InicioMenu.add(RegistrarUsuarioMenuItem);
+
+        ListaTUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        ListaTUsuarios.setText("Listar Telefonos por cedula");
+        ListaTUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListaTUsuariosActionPerformed(evt);
+            }
+        });
+        InicioMenu.add(ListaTUsuarios);
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("Listar Todos los telefonos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        InicioMenu.add(jMenuItem1);
 
         CerrarSesionMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK));
         CerrarSesionMenu.setText("Cerrar Sesion");
@@ -214,6 +238,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         gestionTelefono.setVisible(true);
     }//GEN-LAST:event_gestionTelefonoMenuActionPerformed
 
+    private void ListaTUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaTUsuariosActionPerformed
+        desktopPane.add(listarTlfUsuarios);
+        listarTlfUsuarios.setVisible(true);
+    }//GEN-LAST:event_ListaTUsuariosActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        desktopPane.add(listarTelefonos);
+        listarTelefonos.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -253,12 +287,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem CerrarSesionMenu;
     private javax.swing.JMenuItem IniciarSesionMenuItem;
     private javax.swing.JMenu InicioMenu;
+    private javax.swing.JMenuItem ListaTUsuarios;
     private javax.swing.JMenuItem RegistrarUsuarioMenuItem;
     private javax.swing.JMenuItem SalirMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem gestinUsuarioMenu;
     private javax.swing.JMenu gestionMenu;
     private javax.swing.JMenuItem gestionTelefonoMenu;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 

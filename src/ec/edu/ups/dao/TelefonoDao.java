@@ -95,11 +95,12 @@ public class TelefonoDao implements ITelefonoDao {
                 int idArchivo = archivo.readInt();
                 if (idArchivo == telefono.getCodigo()) {
                     // sobreescribir datos
-                    archivo.writeInt(idArchivo);
-                    archivo.writeUTF(telefono.getNumero());
-                    archivo.writeUTF(telefono.getTipo());
-                    archivo.writeUTF(telefono.getOperadora());
-                    archivo.writeUTF(telefono.getUsuario().getCedula());
+                     archivo.seek(salto+1);
+                    archivo.writeBytes(telefono.getNumero());
+                    archivo.writeBytes(telefono.getTipo());
+                    archivo.writeBytes(telefono.getOperadora());
+                    archivo.writeBytes(telefono.getUsuario().getCedula());
+                    archivo.seek(salto-1);
 
                 }
                 salto += tamanioRegistro;
@@ -121,11 +122,11 @@ public class TelefonoDao implements ITelefonoDao {
                 int idArchivo = archivo.readInt();
                 if (idArchivo == telefono.getCodigo()) {
                     // sobreescribir datos
-                    archivo.writeUTF("");
-                    archivo.writeUTF("");
-                    archivo.writeUTF("");
-                    archivo.writeUTF("");
-                    archivo.writeUTF("");
+                    archivo.writeBytes("");
+                    archivo.writeBytes("");
+                    archivo.writeBytes("");
+                    archivo.writeBytes("");
+                    archivo.writeBytes("");
                 }
                 salto += tamanioRegistro;
             }
