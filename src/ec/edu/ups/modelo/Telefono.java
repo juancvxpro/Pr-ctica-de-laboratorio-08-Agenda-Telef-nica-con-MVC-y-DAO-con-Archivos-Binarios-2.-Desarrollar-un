@@ -2,7 +2,7 @@ package ec.edu.ups.modelo;
 
 /**
  *
- * @author Paul Idrovo
+ * @author 
  */
 public class Telefono {
 

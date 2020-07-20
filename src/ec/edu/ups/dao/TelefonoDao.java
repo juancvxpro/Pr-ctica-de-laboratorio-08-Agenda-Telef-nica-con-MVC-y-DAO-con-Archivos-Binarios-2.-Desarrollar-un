@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Paul Idrovo
+ * @author 
  */
 public class TelefonoDao implements ITelefonoDao {
 

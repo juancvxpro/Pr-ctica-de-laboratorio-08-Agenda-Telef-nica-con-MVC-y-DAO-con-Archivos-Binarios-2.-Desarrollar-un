@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Paul Idrovo
+ * @author 
  */
 public class UsuarioDao implements IUsuarioDao {
 
