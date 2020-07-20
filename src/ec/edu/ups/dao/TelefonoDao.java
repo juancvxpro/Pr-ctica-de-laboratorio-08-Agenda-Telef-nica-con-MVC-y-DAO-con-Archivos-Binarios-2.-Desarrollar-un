@@ -160,7 +160,7 @@ public class TelefonoDao implements ITelefonoDao {
                 archivo.seek(salto);
                    int c = archivo.readInt();
                    if(c>0){
-                   Telefono tel = new Telefono(archivo.readInt(), archivo.readUTF().trim(), archivo.readUTF().trim(),
+                   Telefono tel = new Telefono(c, archivo.readUTF().trim(), archivo.readUTF().trim(),
                         archivo.readUTF().trim());
                 Usuario usuario = usuarioDao.read(archivo.readUTF().trim());
                 
@@ -194,7 +194,7 @@ public class TelefonoDao implements ITelefonoDao {
                     archivo.seek(salto - 85);
                     int c =archivo.readInt();
                     if(c>0){
-                     Telefono tel = new Telefono(codigo, archivo.readUTF().trim(), archivo.readUTF().trim(),
+                     Telefono tel = new Telefono(c, archivo.readUTF().trim(), archivo.readUTF().trim(),
                             archivo.readUTF().trim());
                     Usuario usuario = usuarioDao.read(archivo.readUTF().trim());
                     tel.setUsuario(usuario);
