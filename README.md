@@ -44,7 +44,7 @@ Desarrollo de una aplicación informática que permita manejar archivos binarios
 [Clase Usuario](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/blob/master/src/ec/edu/ups/modelo/Usuario.java)
 
 *2.1.5 Clase del paquete vista*
-)
+
 [Ventana Gestion Telefono](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/blob/master/src/ec/edu/ups/vista/GestionTelefono.java)
 
 ![Interfaz Gestion Telefono](
@@ -94,6 +94,7 @@ Desarrollo de una aplicación informática que permita manejar archivos binarios
 **Nombre de los estudiantes**
 
 *Juan Jose Cordova Calle*
+
 *Paul Alexander Guapucal Cardenas*
 
 **Firma de los estudiantes**
