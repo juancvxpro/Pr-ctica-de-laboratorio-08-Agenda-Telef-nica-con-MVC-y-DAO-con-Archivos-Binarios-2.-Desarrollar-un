@@ -64,17 +64,14 @@ public class UsuarioDao implements IUsuarioDao {
 
     @Override
     public Usuario read(String cedula) {
-         
+       int salto = 0;
         try {
-           
-            int salto = 0;
-
             while (salto < archivo.length()) {
                 archivo.seek(salto);
                      String cedulaA=archivo.readUTF().trim();
-                if (cedulaA.equals(cedula)) {
+                if (cedula.trim().equals(cedulaA)) {
                     // retornar el Usuario
-                     Usuario usuario = new Usuario(archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(),
+                     Usuario usuario = new Usuario(cedula.trim(), archivo.readUTF().trim(), archivo.readUTF().trim(),
                             archivo.readUTF().trim(), archivo.readUTF().trim());
                     return usuario;
                 }

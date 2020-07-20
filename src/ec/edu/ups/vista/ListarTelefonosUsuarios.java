@@ -43,11 +43,11 @@ private ControladorTelefono controladorTelefono;
 
             },
             new String [] {
-                "Codigo", "Tipo", "Numero", "Operadora"
+                "Codigo", "Tipo", "Numero", "Operadora", "Cedula", "Nombre", "Apellido"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {

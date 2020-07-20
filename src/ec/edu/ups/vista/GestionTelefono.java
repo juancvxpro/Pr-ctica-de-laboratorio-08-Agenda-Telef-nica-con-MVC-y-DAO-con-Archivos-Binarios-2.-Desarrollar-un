@@ -416,14 +416,22 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-    Telefono telefono=  controladorTelefono.encontrarTelefono(Integer.parseInt(txtCodigo.getText()));
-    limpiarTabla();
+    
+       String codigo= JOptionPane.showInputDialog(this,"Ingrese codigo del telefono a buscar");
+       if(codigo!=null){
+       Telefono telefono=  controladorTelefono.encontrarTelefono(Integer.parseInt(codigo));
+       limpiarTabla();
          DefaultTableModel modelo = (DefaultTableModel) tblTelefonos.getModel();
     modelo.setRowCount(0);
     
      Object[] rowData ={telefono.getCodigo(),telefono.getTipo(),telefono.getNumero(),telefono.getOperadora()};
      modelo.addRow(rowData);
      tblTelefonos.setModel(modelo);
+       }else{
+       JOptionPane.showMessageDialog(this, "Parametro vacio");
+       }
+        
+    
     
 
     }//GEN-LAST:event_btnBuscarActionPerformed

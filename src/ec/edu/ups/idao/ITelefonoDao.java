@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author Paul Idrovo
+ * @author 
  */
 public interface ITelefonoDao {
 

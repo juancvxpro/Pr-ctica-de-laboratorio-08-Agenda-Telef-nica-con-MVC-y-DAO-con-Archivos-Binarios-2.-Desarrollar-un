@@ -89,29 +89,25 @@ public class TelefonoDao implements ITelefonoDao {
     //para actualizar un telefono
     @Override
     public void update(Telefono telefono) {
-     
+      int salto = 0;
+        int codigo = telefono.getCodigo();
         try {
-            int salto = 0;
-
             while (salto < archivo.length()) {
                 archivo.seek(salto);
-                int idArchivo = archivo.readInt();
-                if (idArchivo == telefono.getCodigo()) {
-                   archivo.write(idArchivo);
-                   archivo.writeBytes(telefono.getNumero());
-                   archivo.writeBytes(telefono.getTipo());
-                   archivo.writeBytes(telefono.getOperadora());
-                   archivo.writeBytes(telefono.getUsuario().getCedula());
-                   archivo.close();
-                  
+                int codigoArchivo = archivo.readInt();
+                if (codigo == codigoArchivo) {
+                     archivo.writeUTF(telefono.getTipo());
+                    archivo.writeUTF(telefono.getOperadora());
+
+                    break;
                 }
                 salto += tamanioRegistro;
             }
-           archivo.close();
         } catch (IOException ex) {
-            System.out.println("Error de lectura y escritura Update:TelefonoDao");
+            System.out.println("Error de lectura o escritura(upDate Telefono)");
         }
     }
+    
 
     //para eliminar un telefono
     @Override
@@ -123,13 +119,14 @@ public class TelefonoDao implements ITelefonoDao {
             while (salto < archivo.length()) {
                 archivo.seek(salto);
                 int idArchivo = archivo.readInt();
-                if (idArchivo == codigo) {
+                if (codigo==idArchivo) {
+                 archivo.seek(salto);
                 archivo.writeInt(0);
-                archivo.writeUTF("");
-                archivo.writeUTF("");
-               archivo.writeUTF("");
-               archivo.writeUTF("");
-               
+                archivo.writeUTF(llenarEspacios(25));
+                archivo.writeUTF(llenarEspacios(25));
+               archivo.writeUTF(llenarEspacios(25));
+               archivo.writeUTF(llenarEspacios(10));
+               break;
                 }
                 salto += tamanioRegistro;
             }
@@ -161,14 +158,17 @@ public class TelefonoDao implements ITelefonoDao {
 
             while (salto < archivo.length()) {
                 archivo.seek(salto);
-
-                Telefono tel = new Telefono(archivo.readInt(), archivo.readUTF().trim(), archivo.readUTF().trim(),
+                   int codigo = archivo.readInt();
+                   if(codigo>0){
+                   Telefono tel = new Telefono(archivo.readInt(), archivo.readUTF().trim(), archivo.readUTF().trim(),
                         archivo.readUTF().trim());
                 Usuario usuario = usuarioDao.read(archivo.readUTF().trim());
                 
                 tel.setUsuario(usuario);
                 
                 listar.add(tel);
+                   }
+                
                 
                  salto += tamanioRegistro;
             }
@@ -184,29 +184,34 @@ public class TelefonoDao implements ITelefonoDao {
     @Override
     public List<Telefono> retornaTlfsUsuario(String cedula) {
         listar = new ArrayList<>();
+         int salto = 85;
         try {
-            int salto = 85;
-
             while (salto < archivo.length()) {
                 archivo.seek(salto);
                 String cedulaArchivo = archivo.readUTF();
                 if (cedula.trim().equals(cedulaArchivo.trim())) {
-
+                    archivo.seek(salto);
                     archivo.seek(salto - 85);
-                    Telefono tel = new Telefono(archivo.readInt(), archivo.readUTF().trim(), archivo.readUTF().trim(),
+                    int codigo =archivo.readInt();
+                    if(codigo>0&&archivo.readUTF().trim()!=null){
+                     Telefono tel = new Telefono(codigo, archivo.readUTF().trim(), archivo.readUTF().trim(),
                             archivo.readUTF().trim());
                     Usuario usuario = usuarioDao.read(archivo.readUTF().trim());
                     tel.setUsuario(usuario);
                     listar.add(tel);
+                    }
                 }
 
                 salto += tamanioRegistro;
             }
-
+            return listar;
         } catch (IOException ex) {
             System.out.println("Error de lectura y escritura retornaTlfsUsuario:TelefonoDao");
         }
         return listar;
     }
-
+    public String llenarEspacios(int espacios) {
+        String formato = "";
+        return String.format("%-" + espacios + "s", formato);
+    }
 }

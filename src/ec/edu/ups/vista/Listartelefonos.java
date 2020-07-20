@@ -108,7 +108,7 @@ public class Listartelefonos extends javax.swing.JInternalFrame {
        DefaultTableModel modelo = (DefaultTableModel) tblTelefonosUse.getModel();
     modelo.setRowCount(0);
     for(Telefono telefono: controladorTelefono.findAll()){
-     Object[] rowData ={telefono.getCodigo(),telefono.getTipo(),telefono.getNumero(),telefono.getOperadora()};
+     Object[] rowData ={telefono.getCodigo(),telefono.getTipo(),telefono.getNumero(),telefono.getOperadora(),telefono.getUsuario().getCedula(),telefono.getUsuario().getNombre(),telefono.getUsuario().getApellido()};
      modelo.addRow(rowData);
      tblTelefonosUse.setModel(modelo);
     }//GEN-LAST:event_btnListarActionPerformed
