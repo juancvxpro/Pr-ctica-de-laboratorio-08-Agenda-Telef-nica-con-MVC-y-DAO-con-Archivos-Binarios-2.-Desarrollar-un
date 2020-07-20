@@ -109,6 +109,7 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
+        btnActualizar1 = new javax.swing.JButton();
 
         setClosable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -214,7 +215,7 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
         btnActualizar.setBackground(new java.awt.Color(51, 153, 255));
         btnActualizar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnActualizar.setText("ACTUALIZAR");
+        btnActualizar.setText("MODIFICAR");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -241,14 +242,20 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
             }
         });
 
+        btnActualizar1.setBackground(new java.awt.Color(51, 153, 255));
+        btnActualizar1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnActualizar1.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizar1.setText("Actualizar tabla");
+        btnActualizar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -265,15 +272,20 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
                             .addComponent(txtCodigo)
                             .addComponent(cbxTipo, 0, 230, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addComponent(btnAgregar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnActualizar)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnBuscar)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnEliminar)))
-                .addContainerGap(125, Short.MAX_VALUE))
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnActualizar1)
+                                .addGap(34, 34, 34)
+                                .addComponent(btnAgregar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnActualizar)
+                                .addGap(26, 26, 26)
+                                .addComponent(btnBuscar)
+                                .addGap(30, 30, 30)
+                                .addComponent(btnEliminar)))))
+                .addGap(77, 77, 77))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,10 +314,11 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
                     .addComponent(btnAgregar)
                     .addComponent(btnActualizar)
                     .addComponent(btnEliminar)
-                    .addComponent(btnBuscar))
+                    .addComponent(btnBuscar)
+                    .addComponent(btnActualizar1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -403,11 +416,25 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+    Telefono telefono=  controladorTelefono.encontrarTelefono(Integer.parseInt(txtCodigo.getText()));
+    limpiarTabla();
+         DefaultTableModel modelo = (DefaultTableModel) tblTelefonos.getModel();
+    modelo.setRowCount(0);
+    
+     Object[] rowData ={telefono.getCodigo(),telefono.getTipo(),telefono.getNumero(),telefono.getOperadora()};
+     modelo.addRow(rowData);
+     tblTelefonos.setModel(modelo);
+    
+
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnActualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizar1ActionPerformed
+        cargarTelefonosTbl();
+    }//GEN-LAST:event_btnActualizar1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnActualizar1;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;

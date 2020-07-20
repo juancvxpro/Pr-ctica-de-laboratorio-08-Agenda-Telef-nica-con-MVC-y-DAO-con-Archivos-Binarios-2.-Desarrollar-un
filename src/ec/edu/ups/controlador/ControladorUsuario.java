@@ -78,6 +78,10 @@ public class ControladorUsuario {
         return TelefonoDao.retornaTlfsUsuario(usuario.getCedula());
 
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
     
 
     public boolean validarUsuario(String correo, String pass) {

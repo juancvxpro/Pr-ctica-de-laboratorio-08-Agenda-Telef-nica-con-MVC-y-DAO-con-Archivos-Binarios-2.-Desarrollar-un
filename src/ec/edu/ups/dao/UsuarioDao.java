@@ -64,7 +64,9 @@ public class UsuarioDao implements IUsuarioDao {
 
     @Override
     public Usuario read(String cedula) {
+         
         try {
+           
             int salto = 0;
 
             while (salto < archivo.length()) {
@@ -74,10 +76,9 @@ public class UsuarioDao implements IUsuarioDao {
                     // retornar el Usuario
                      Usuario usuario = new Usuario(archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(),
                             archivo.readUTF().trim(), archivo.readUTF().trim());
-                     
                     return usuario;
-
                 }
+                
                 salto += tamanioRegistro;
             }
 
@@ -85,6 +86,7 @@ public class UsuarioDao implements IUsuarioDao {
             System.out.println("Error de lectura y escritura read:TelefonoDao");
         }
         return null;
+      
 
     }
 
