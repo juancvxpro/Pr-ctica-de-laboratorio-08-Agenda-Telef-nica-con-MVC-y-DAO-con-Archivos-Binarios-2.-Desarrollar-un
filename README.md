@@ -11,24 +11,67 @@ Desarrollo de una aplicación informática que permita manejar archivos binarios
 
 **1.	Crear un repositorio en GitHub con el nombre “Práctica de laboratorio 08: Agenda Telefónica con MVC y DAO con Archivos Binarios”**
 
-![Screen del Respositorio]()
+![Screen del Respositorio](https://github.com/Paul-Guapucal/Screens-Practica08/blob/master/ScreenRepositorio.jpg)
 
 **2.	Desarrollar una aplicación en Java para gestionar una agenda telefónica según los requerimientos planteados en las instrucciones de la práctica.**
 
 *2.1 Paquetes de la practica*
 
-[Paquetes de la Practica](
+[Paquetes de la Practica](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/tree/master/src/ec/edu/ups)
 
 *2.1.1 Clase del paquete controlador*
 
-[Clase ControladorTelefono](
+[Clase ControladorTelefono](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/blob/master/src/ec/edu/ups/controlador/ControladorTelefono.java)
 
-[Clase ControladorUsuario](
+[Clase ControladorUsuario](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/blob/master/src/ec/edu/ups/controlador/ControladorUsuario.java)
 
+*2.1.2 Clase del paquete DAO*
+
+[Clase TelefonoDAO](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/blob/master/src/ec/edu/ups/dao/TelefonoDao.java)
+
+[Clase UsuarioDAO](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/blob/master/src/ec/edu/ups/dao/UsuarioDao.java)
+
+*2.1.3 Clase del paquete IDAO*
+
+[Intefaz ITelefonoDAO](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/blob/master/src/ec/edu/ups/idao/ITelefonoDao.java)
+
+[Interfaz IUsuarioDAO](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/blob/master/src/ec/edu/ups/idao/IUsuarioDao.java)
+
+*2.1.4 Clase del paquete modelo*
+
+[Clase Telefono](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/blob/master/src/ec/edu/ups/modelo/Telefono.java)
+
+[Clase Usuario](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/blob/master/src/ec/edu/ups/modelo/Usuario.java)
+
+*2.1.5 Clase del paquete vista*
+
+[Ventana Gestion Telefono](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/blob/master/src/ec/edu/ups/vista/GestionTelefono.java)
+
+![Interfaz Gestion Telefono](https://github.com/Paul-Guapucal/Screens-Practica08/blob/master/VentanaGestionTelefonos.jpg)
+
+[Ventana Listar telefono del usuario](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/blob/master/src/ec/edu/ups/vista/ListarTelefonosUsuarios.java)
+
+![Interfaz Listar telefono del usuario](https://github.com/Paul-Guapucal/Screens-Practica08/blob/master/VentanaListarTelefonosUsuario.jpg)
+
+[Ventana Listar telefonos](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/blob/master/src/ec/edu/ups/vista/Listartelefonos.java)
+
+![Interfaz Listar telefonos](https://github.com/Paul-Guapucal/Screens-Practica08/blob/master/VentanaListarTelefonos.jpg)
+
+[Ventana Registrar Usuario](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/blob/master/src/ec/edu/ups/vista/RegistrarUsuario.java)
+
+![Interfaz Registrar Usuario](https://github.com/Paul-Guapucal/Screens-Practica08/blob/master/VentanaRegistrarUsuario.jpg)
+
+[Ventana Iniciar Sesion](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/blob/master/src/ec/edu/ups/vista/VentanaIniciarSesion.java)
+
+![Interfaz Iniciar Sesion](https://github.com/Paul-Guapucal/Screens-Practica08/blob/master/VentanaIniciarSesion.jpg)
+
+[Ventana Principal](https://github.com/juancvxpro/Pr-ctica-de-laboratorio-08-Agenda-Telef-nica-con-MVC-y-DAO-con-Archivos-Binarios-2.-Desarrollar-un/blob/master/src/ec/edu/ups/vista/VentanaPrincipal.java)
+
+![Interfaz Ventana Principal](https://github.com/Paul-Guapucal/Screens-Practica08/blob/master/VentanaPrincipal.jpg)
 
 **3.	Realizar varios commits en la herramienta GitHub que demuestren el desarrollo de la aplicación desde principio a fin.**
 
-![Commits realizados en la Practica](
+![Commits realizados en la Practica](https://github.com/Paul-Guapucal/Screens-Practica08/blob/master/ScreensCommits.jpg)
 
 **Resultados obtenidos en la practica**
 
@@ -51,8 +94,9 @@ Desarrollo de una aplicación informática que permita manejar archivos binarios
 **Nombre de los estudiantes**
 
 *Juan Jose Cordova Calle*
+
 *Paul Alexander Guapucal Cardenas*
 
 **Firma de los estudiantes**
 
-![firma de los estudiante](
+![firma de los estudiante](https://github.com/Paul-Guapucal/Screens-Practica08/blob/master/ssFirmas.jpg)
