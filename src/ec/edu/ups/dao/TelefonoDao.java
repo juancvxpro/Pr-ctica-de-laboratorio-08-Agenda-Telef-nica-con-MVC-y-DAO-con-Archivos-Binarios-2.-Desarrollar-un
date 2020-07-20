@@ -107,7 +107,7 @@ public class TelefonoDao implements ITelefonoDao {
                 }
                 salto += tamanioRegistro;
             }
-
+           archivo.close();
         } catch (IOException ex) {
             System.out.println("Error de lectura y escritura Update:TelefonoDao");
         }
@@ -129,11 +129,11 @@ public class TelefonoDao implements ITelefonoDao {
                 archivo.writeUTF("");
                archivo.writeUTF("");
                archivo.writeUTF("");
-               archivo.close();
+               
                 }
                 salto += tamanioRegistro;
             }
-
+           archivo.close();
         } catch (IOException ex) {
             System.out.println("Error de lectura y escritura Delete:TelefonoDao");
         }
