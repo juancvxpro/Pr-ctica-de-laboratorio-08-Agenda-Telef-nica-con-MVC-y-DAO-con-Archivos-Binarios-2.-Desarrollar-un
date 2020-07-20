@@ -68,6 +68,11 @@ public class Listartelefonos extends javax.swing.JInternalFrame {
         });
 
         btnLimpiar.setText("LIMPIAR");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,12 +113,17 @@ public class Listartelefonos extends javax.swing.JInternalFrame {
        DefaultTableModel modelo = (DefaultTableModel) tblTelefonosUse.getModel();
     modelo.setRowCount(0);
     for(Telefono telefono: controladorTelefono.findAll()){
-     Object[] rowData ={telefono.getCodigo(),telefono.getTipo(),telefono.getNumero(),telefono.getOperadora(),telefono.getUsuario().getCedula(),telefono.getUsuario().getNombre(),telefono.getUsuario().getApellido()};
+     Object[] rowData ={telefono.getCodigo(),telefono.getTipo(),telefono.getNumero()};
      modelo.addRow(rowData);
      tblTelefonosUse.setModel(modelo);
     }//GEN-LAST:event_btnListarActionPerformed
- 
     }
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+       DefaultTableModel modelo = (DefaultTableModel) tblTelefonosUse.getModel();
+    modelo.setRowCount(0);
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+ 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnListar;
