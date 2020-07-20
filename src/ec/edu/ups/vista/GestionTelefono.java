@@ -430,6 +430,8 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
 
     private void btnActualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizar1ActionPerformed
         cargarTelefonosTbl();
+         cargarSiguienteCodigo();
+        
     }//GEN-LAST:event_btnActualizar1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
